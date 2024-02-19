@@ -1,20 +1,8 @@
-/**
-
- * Project:Solo Lab3
- * Purpose DataNase
- * Course:IST242
- * Author:Houde Yu
- * Date Developed:2024/2/12
- * Last Date Changed:2024/2/18
- * Rev:1.9
-
- */
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int choice = 4; // Suppose choice Blockchain
+        int choice = 3; // Suppose choice Blockchain
         switch (choice) {
             case 1:
                 testMySQL();
@@ -23,7 +11,7 @@ public class Main {
                 testMongoDB();
                 break;
             case 3:
-                // Test Redis
+                testRedis();
                 break;
             case 4:
                 testBlockchain();
@@ -77,6 +65,29 @@ public class Main {
 
         // Delete customer information
         mongoDBDatabase.deleteCustomer(1);
+    }
+
+    private static void testRedis() {
+        RedisDatabase redisDatabase = new RedisDatabase();
+
+        // Test Redis database operations
+        // Insert customer information
+        Customer customer1 = new Customer(1, "Alice", "123 Elm St", "555-1111");
+        redisDatabase.insertCustomer(customer1);
+
+        // View all customer information
+        List<Customer> customers = redisDatabase.getAllCustomers();
+        System.out.println("All Customers:");
+        for (Customer customer : customers) {
+            System.out.println(customer);
+        }
+
+        // Update customer information
+        Customer updatedCustomer = new Customer(1, "Alice", "456 Oak St", "555-2222");
+        redisDatabase.updateCustomer(updatedCustomer);
+
+        // Delete customer information
+        redisDatabase.deleteCustomer(1);
     }
 
     private static void testBlockchain() {

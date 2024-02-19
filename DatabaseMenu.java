@@ -1,14 +1,3 @@
-/**
-
- * Project:Solo Lab3
- * Purpose DataNase
- * Course:IST242
- * Author:Houde Yu
- * Date Developed:2024/2/12
- * Last Date Changed:2024/2/18
- * Rev:1.9
-
- */
 import java.util.Scanner;
 
 public class DatabaseMenu {
@@ -34,7 +23,8 @@ public class DatabaseMenu {
                 handleMongoDBOperations(mongoDBDatabase);
                 break;
             case 3:
-                // Handle Redis operations
+                RedisDatabase redisDatabase = new RedisDatabase();
+                handleRedisOperations(redisDatabase);
                 break;
             case 4:
                 Blockchain blockchain = new Blockchain();
@@ -55,21 +45,21 @@ public class DatabaseMenu {
         // 实现MongoDB数据库操作
     }
 
-    private static void handleBlockchainOperations(Blockchain blockchain) {
+    private static void handleRedisOperations(RedisDatabase redisDatabase) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Blockchain Operations Menu:");
-        System.out.println("1. Add Block");
-        System.out.println("2. Print Blockchain");
+        System.out.println("Redis Operations Menu:");
+        System.out.println("1. Insert Customer");
+        System.out.println("2. View All Customers");
         System.out.println("Please choose an option:");
 
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                addBlock(scanner, blockchain);
+                insertCustomer(scanner, redisDatabase);
                 break;
             case 2:
-                blockchain.printBlockchain();
+                viewAllCustomers(redisDatabase);
                 break;
             default:
                 System.out.println("Invalid option");
@@ -78,10 +68,15 @@ public class DatabaseMenu {
         scanner.close();
     }
 
-    private static void addBlock(Scanner scanner, Blockchain blockchain) {
-        System.out.println("Enter data for the new block:");
-        String data = scanner.next();
-        blockchain.addBlock(data);
-        System.out.println("Block added successfully.");
+    private static void insertCustomer(Scanner scanner, RedisDatabase redisDatabase) {
+        // 实现插入客户信息的方法
+    }
+
+    private static void viewAllCustomers(RedisDatabase redisDatabase) {
+        // 实现查看所有客户信息的方法
+    }
+
+    private static void handleBlockchainOperations(Blockchain blockchain) {
+        // 实现区块链操作
     }
 }
