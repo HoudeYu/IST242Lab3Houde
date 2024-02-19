@@ -2,7 +2,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        int choice = 3; // Suppose choice Blockchain
+        int choice = 3; // Suppose choice Redis
         switch (choice) {
             case 1:
                 testMySQL();
