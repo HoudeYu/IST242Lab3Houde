@@ -1,19 +1,12 @@
-/**
-
- * Project:Solo Lab3
- * Purpose DataNase
- * Course:IST242
- * Author:Houde Yu
- * Date Developed:2024/2/12
- * Last Date Changed:2024/2/18
- * Rev:1.9
-
- */
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
-// Define a Block class
 class Block {
     private int index;
     private long timestamp;
@@ -21,7 +14,6 @@ class Block {
     private String hash;
     private String data;
 
-    // Constructor
     public Block(int index, String previousHash, String data) {
         this.index = index;
         this.timestamp = new Date().getTime();
@@ -30,7 +22,6 @@ class Block {
         this.hash = calculateHash();
     }
 
-    // Calculate the hash of the block
     public String calculateHash() {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -50,7 +41,6 @@ class Block {
         }
     }
 
-    // Getters
     public int getIndex() {
         return index;
     }
@@ -70,5 +60,15 @@ class Block {
     public String getData() {
         return data;
     }
-}
 
+    @Override
+    public String toString() {
+        return "Block{" +
+                "index=" + index +
+                ", timestamp=" + timestamp +
+                ", previousHash='" + previousHash + '\'' +
+                ", hash='" + hash + '\'' +
+                ", data=" + data +
+                '}';
+    }
+}

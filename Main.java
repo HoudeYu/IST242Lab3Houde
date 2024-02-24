@@ -1,8 +1,15 @@
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Main {
     public static void main(String[] args) {
-        int choice = 2; // Suppose choice Redis
+        int choice = 4; // Suppose choice Redis
         switch (choice) {
             case 1:
                 testMySQL();
@@ -93,13 +100,29 @@ public class Main {
     private static void testBlockchain() {
         Blockchain blockchain = new Blockchain();
 
-        // Test blockchain operations
-        // Add new blocks
-        blockchain.addBlock("Transaction 1");
-        blockchain.addBlock("Transaction 2");
-        blockchain.addBlock("Transaction 3");
+        // 创建两个 Customer 对象
+        Customer customer1 = new Customer(1, "Alice", "123 Elm St", "555-1111");
+        Customer customer2 = new Customer(2, "Bob", "456 Oak St", "555-2222");
 
-        // Print the entire blockchain
+        // 将 Customer 对象转换为 JSON 字符串
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            // 将 Customer 对象转换为 JSON 字符串
+            String jsonCustomer1 = objectMapper.writeValueAsString(customer1);
+            String jsonCustomer2 = objectMapper.writeValueAsString(customer2);
+            blockchain.addBlock(jsonCustomer1);
+            blockchain.addBlock(jsonCustomer2);
+
+        // 打印整个 blockchain
         blockchain.printBlockchain();
+    } catch (JsonProcessingException e){
+            e.printStackTrace();
+    } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
     }
+
+
 }
